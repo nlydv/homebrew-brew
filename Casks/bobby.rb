@@ -3,10 +3,10 @@ cask "bobby" do
 
   if Hardware::CPU.intel?
     arch = "x86"
-    sha256 "fb097ae8405705de007fe86def051b259de38c4b969ffff2f3cd081b80b95eeb"
+    sha256 "abcdef"
   else
     arch = "arm64"
-    sha256 "fb097ae8405705de007fe86def051b259de38c4b969ffff2f3cd081b80b95eeb"
+    sha256 "012345"
   end
 
   url "https://github.com/nlydv/bob-wallet/releases/download/v#{version}/Bob-#{version}-#{arch}.dmg",
