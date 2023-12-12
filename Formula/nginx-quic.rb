@@ -8,16 +8,16 @@ class NginxQuic < Formula
 
     # url "https://nginx.org/download/nginx-1.23.3.tar.gz"
     # sha256 "75cb5787dbb9fae18b14810f91cc4343f64ce4c24e27302136fb52498042ba54"
-    url "https://hg.nginx.org/nginx-quic/archive/af5adec171b4.tar.gz"
-    sha256 "dfe05bdda121ba5b37743957b554e411a90a1a5898aece5a6b2362eb8f86f4e0"
+    url "https://hg.nginx.org/nginx-quic/archive/def8e398d7c5.tar.gz"
+    sha256 "22351a031f3785e1143100fab8c5bab633f9a4dce62d53d5af57bb91c2eafaf2"
     version "1.23.4"
 
     license "BSD-2-Clause"
 
     # head "https://hg.nginx.org/nginx/", using: :hg
-    head "https://hg.nginx.org/nginx-quic/", using: :hg
+    # head "https://hg.nginx.org/nginx-quic/", using: :hg
 
-    depends_on "libressl"
+    # depends_on "libressl"
     depends_on "pcre2"
 
     uses_from_macos "xz" => :build
@@ -28,9 +28,11 @@ class NginxQuic < Formula
         (pkgshare/"src").mkpath
         system "tar", "-cJf", (pkgshare/"src/src.tar.xz"), "."
 
+
+
         # clone `google/ngx_brotli` repo
         system "git", "clone", "https://github.com/google/ngx_brotli.git", (pkgshare/"src/brotli")
-        # clone brotli submodule dependencies
+        # ...and its submodule dependencies
         chdir (pkgshare/"src/brotli") do
             system "git", "submodule", "update", "--init"
         end
@@ -42,11 +44,13 @@ class NginxQuic < Formula
         end
 
         # openssl = Formula["openssl@1.1"]
-        libressl = Formula["libressl"]
+        # libressl = Formula["libressl"]
         pcre = Formula["pcre2"]
 
-        cc_opt = "-I#{pcre.opt_include} -I#{libressl.opt_include}"
-        ld_opt = "-L#{pcre.opt_lib} -L#{libressl.opt_lib}"
+        # cc_opt = "-I#{pcre.opt_include} -I#{libressl.opt_include}"
+        # ld_opt = "-L#{pcre.opt_lib} -L#{libressl.opt_lib}"
+        cc_opt = "-I#{pcre.opt_include} -I/Users/neel/http3/build/include"
+        ld_opt = "-L#{pcre.opt_lib} -L/Users/neel/http3/build/lib"
 
         # See https://quic.nginx.org/readme.html for installation instructions of QUIC/HTTP3 version
         args = %W[
