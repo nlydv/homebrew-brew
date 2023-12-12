@@ -2,8 +2,7 @@ cask "delta-app" do
   version "1.0.0"
   sha256 "bd99115957d9235d2353a48aee1bef0cc9679796a26cf557873dec58c37d3385"
 
-  url "https://static-assets.getdelta.io/desktop_app/Delta-#{version}.dmg"
-  appcast "https://delta.app/en/download"
+  url "https://static.delta.app/desktop_app/Delta-#{version}.dmg"
   name "Delta"
   desc "Desktop version of Delta – a crypto portfolio tracking app."
   homepage "https://getdelta.io/"
